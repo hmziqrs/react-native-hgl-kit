@@ -1,9 +1,8 @@
-
 const configs = {
   domain: '',
-  defaultHeaders = {
+  defaultHeaders: {
     'Content-Type': 'application/json',
-  }
+  },
 };
 
 export function setDomain(domain) {
@@ -20,7 +19,7 @@ export async function api(
     bodyParsing = 'json',
     ...extraProps
   },
-  parsing = 'json'
+  parsing = 'json',
 ) {
   try {
     const props = {
