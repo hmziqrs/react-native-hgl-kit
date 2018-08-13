@@ -37,7 +37,7 @@ function TouchFeedback({
   }
   return (
     <TouchableOpacity style={style} {...props}>
-      {this.props.children}
+      {children}
     </TouchableOpacity>
   );
 }
