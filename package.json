@@ -1,6 +1,6 @@
 {
   "name": "react-native-hgl-kit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React Native kit",
   "main": "index.js",
   "scripts": {
@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/hackerhgl/react-native-hgl-kit/issues"
   },
-  "homepage": "https://github.com/hackerhgl/react-native-hgl-kit#readme"
+  "homepage": "https://github.com/hackerhgl/react-native-hgl-kit#readme",
+  "dependencies": {
+    "color": "^3.0.0",
+    "react-native": "^0.55.4",
+    "react-native-status-bar-height": "^2.0.0"
+  }
 }
