@@ -3,7 +3,6 @@ import isString from 'lodash/isString';
 import mapKeys from 'lodash/mapKeys';
 import mapValues from 'lodash/mapValues';
 import upperFirst from 'lodash/upperFirst';
-import Dimensions from 'Dimensions';
 
 export function getStyledPadding(value, weight = 2) {
   let prop = {};
