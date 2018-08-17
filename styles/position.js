@@ -2,9 +2,7 @@ import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
 import mapValues from 'lodash/mapValues';
 
-import Dimensions from 'theme/Dimensions';
-
-export function getStyledPosition(value, weight = Dimensions.spaceWeight) {
+export function getStyledPosition(value, weight = 2) {
   let position = value;
   let prop = {};
   if (position === 0 || isNumber(position)) {
@@ -16,9 +14,7 @@ export function getStyledPosition(value, weight = Dimensions.spaceWeight) {
       left: pos,
     };
   } else if (position && isString(position)) {
-    position = position
-      .split(' ')
-      .map((v) => (v === '_' ? v : parseInt(v, 10)));
+    position = position.split(' ').map(v => (v === '_' ? v : parseInt(v, 10)));
     if (position.length === 4) {
       if (position[0] !== '_' && isNumber(position[0])) {
         prop.top = position[0] ? position[0] * weight : 0;
@@ -43,7 +39,7 @@ export function getStyledPosition(value, weight = Dimensions.spaceWeight) {
       }
     }
   } else if (position && Object.keys(position).length) {
-    prop = mapValues(position, (v) => (v ? v * weight : 0));
+    prop = mapValues(position, v => (v ? v * weight : 0));
   }
   return prop;
 }

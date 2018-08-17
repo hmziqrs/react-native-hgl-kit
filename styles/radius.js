@@ -3,9 +3,7 @@ import isString from 'lodash/isString';
 import mapKeys from 'lodash/mapKeys';
 import mapValues from 'lodash/mapValues';
 
-import Dimensions from 'theme/Dimensions';
-
-export function getStyledRadius(value, weight = Dimensions.radiusWeight) {
+export function getStyledRadius(value, weight = 2) {
   const map = {
     top: 'borderTopLeftRadius',
     right: 'borderTopRightRadius',
@@ -43,7 +41,7 @@ export function getStyledRadius(value, weight = Dimensions.radiusWeight) {
     }
   } else if (radius && Object.keys(radius).length) {
     radius = mapKeys(radius, (_, key) => map[key]);
-    prop = mapValues(radius, (v) => v * weight);
+    prop = mapValues(radius, v => v * weight);
   }
   return prop;
 }

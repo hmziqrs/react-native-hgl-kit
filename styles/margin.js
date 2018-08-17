@@ -4,9 +4,7 @@ import mapKeys from 'lodash/mapKeys';
 import mapValues from 'lodash/mapValues';
 import upperFirst from 'lodash/upperFirst';
 
-import Dimensions from 'theme/Dimensions';
-
-export function getStyledMargin(value, weight = Dimensions.spaceWeight) {
+export function getStyledMargin(value, weight = 2) {
   let prop = {};
   let margin = value;
   if (margin && isNumber(margin)) {
@@ -38,7 +36,7 @@ export function getStyledMargin(value, weight = Dimensions.spaceWeight) {
     }
   } else if (margin && Object.keys(margin).length) {
     margin = mapKeys(margin, (_, key) => `margin${upperFirst(key)}`);
-    prop = mapValues(margin, (v) => v * weight);
+    prop = mapValues(margin, v => v * weight);
   }
   return prop;
 }

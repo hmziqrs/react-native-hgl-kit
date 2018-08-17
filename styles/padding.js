@@ -3,10 +3,9 @@ import isString from 'lodash/isString';
 import mapKeys from 'lodash/mapKeys';
 import mapValues from 'lodash/mapValues';
 import upperFirst from 'lodash/upperFirst';
+import Dimensions from 'Dimensions';
 
-import Dimensions from 'theme/Dimensions';
-
-export function getStyledPadding(value, weight = Dimensions.spaceWeight) {
+export function getStyledPadding(value, weight = 2) {
   let prop = {};
   let padding = value;
   if (padding && isNumber(padding)) {
@@ -38,7 +37,7 @@ export function getStyledPadding(value, weight = Dimensions.spaceWeight) {
     }
   } else if (padding && Object.keys(padding).length) {
     padding = mapKeys(padding, (_, key) => `padding${upperFirst(key)}`);
-    prop = mapValues(padding, (v) => v * weight);
+    prop = mapValues(padding, v => v * weight);
   }
   return prop;
 }
