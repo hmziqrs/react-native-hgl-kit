@@ -3,19 +3,23 @@ import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
 import isEmpty from 'lodash/isEmpty';
 
-import { getColors } from 'theme/Colors';
+let colors = {};
 
 import border from './border';
 import margin from './margin';
 import padding from './padding';
 import position from './position';
 import radius from './radius';
+import elevation from './elevation';
 import * as layout from './layout';
+
+export function setColors(colorConfig) {
+  colors = { ...colorConfig };
+}
 
 export default function getStyled(props, weight) {
   let styled = {};
   const transform = {};
-  const colors = getColors();
   if (props.border) {
     styled = { ...styled, ...border(props.border, weight) };
   }
@@ -78,7 +82,7 @@ export default function getStyled(props, weight) {
     styled.borderColor = colors[props.borderColor] || props.borderColor;
   }
   if (props.elevation) {
-    styled = { ...styled, ...Elevation(props.elevation) };
+    styled = { ...styled, ...elevation(props.elevation) };
   }
   if (props.font) {
     styled.fontSize = props.font;
