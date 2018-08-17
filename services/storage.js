@@ -1,13 +1,19 @@
-import { AsyncStorage } from 'react-native';
+import webStorage from './storage.web';
+
+let StorageLib = webStorage;
+
+export function setStorageLib(lib) {
+  StorageLib = lib;
+}
 
 class LocalStorage {
   setItem(key, data) {
-    return AsyncStorage.setItem(key, JSON.stringify(data));
+    return StorageLib.setItem(key, JSON.stringify(data));
   }
 
   async getItem(...args) {
     try {
-      const data = await AsyncStorage.getItem(...args);
+      const data = await StorageLib.getItem(...args);
       return JSON.parse(data);
     } catch (e) {
       return data;
@@ -16,7 +22,7 @@ class LocalStorage {
 
   async multiGet(keys) {
     try {
-      const raw = await AsyncStorage.multiGet(keys);
+      const raw = await StorageLib.multiGet(keys);
       return raw.map(v => [v[0], JSON.parse(v[1])]);
     } catch (e) {
       throw e;
@@ -25,7 +31,7 @@ class LocalStorage {
 
   async multiSet(keys) {
     try {
-      return await AsyncStorage.multiSet(
+      return await StorageLib.multiSet(
         keys.map(v => [v[0], JSON.stringify(v[1])])
       );
     } catch (e) {
@@ -34,15 +40,15 @@ class LocalStorage {
   }
 
   async multiRemove(keys) {
-    return AsyncStorage.multiRemove(keys);
+    return StorageLib.multiRemove(keys);
   }
 
   removeItem(key) {
-    return AsyncStorage.removeItem(key);
+    return StorageLib.removeItem(key);
   }
 
   clear() {
-    return AsyncStorage.clear();
+    return StorageLib.clear();
   }
 }
 
