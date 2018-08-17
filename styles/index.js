@@ -1,4 +1,3 @@
-import Elevation from 'theme/Elevation';
 import isNumber from 'lodash/isNumber';
 import isString from 'lodash/isString';
 import isEmpty from 'lodash/isEmpty';
