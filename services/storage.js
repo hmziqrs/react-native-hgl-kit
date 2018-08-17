@@ -1,6 +1,6 @@
-import webStorage from './storage.web';
+// import webStorage from './storage.web';
 
-let StorageLib = webStorage;
+let StorageLib = {};
 
 export function setStorageLib(lib) {
   StorageLib = lib;
