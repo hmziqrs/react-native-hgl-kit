@@ -22,7 +22,9 @@ function TouchFeedback({
 }) {
   if (noFeedback) {
     return (
-      <TouchableWithoutFeedback {...props}>{children}</TouchableWithoutFeedback>
+      <TouchableWithoutFeedback {...props}>
+        <View style={style}>{children}</View>
+      </TouchableWithoutFeedback>
     );
   }
   if (Platform.OS === 'android' && Platform.Version >= 21 && !noNative) {
