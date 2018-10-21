@@ -6,6 +6,9 @@ const colors = {
   dark: Color('#333333'),
   grey: Color('#818687'),
   accent: Color('#00818e'),
+  alpha: Color('#000')
+    .alpha(0.0)
+    .string(),
 };
 
 export default colors;

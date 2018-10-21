@@ -25,6 +25,8 @@
   "dependencies": {
     "color": "^3.0.0",
     "react-native": "^0.55.4",
+    "react-native-iphone-x-helper": "^1.2.0",
+    "react-native-device-info": "^0.24.0",
     "react-native-status-bar-height": "^2.0.0"
   }
 }
