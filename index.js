@@ -1,4 +1,5 @@
 import * as services from './services';
+import { Platform } from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
 import dimensions from 'configs/dimensions';

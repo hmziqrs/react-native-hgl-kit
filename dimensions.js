@@ -9,6 +9,16 @@ const obj = {
   height,
   statusBarHeight,
   availableHeight: height - statusBarHeight,
+  getWidth: () => Dimensions.get('window').width,
+  getHeight: () => Dimensions.get('window').height,
+  getAvailHeight: () => Dimensions.get('window').height - getStatusBarHeight(),
 };
+
+export function getOrientation() {
+  if (obj.getWidth() > obj.getHeight()) {
+    return 'landscape';
+  }
+  return 'potrait';
+}
 
 export default obj;
