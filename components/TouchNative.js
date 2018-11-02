@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import colors from '../configs/colors.js';
+import colors from '../colors.js';
 
 function TouchFeedback({
   style,
@@ -33,7 +33,13 @@ function TouchFeedback({
         background={TouchableNativeFeedback.Ripple(rippleColor, rippleEffect)}
         {...props}
       >
-        {noChild ? children : <View style={style}>{children}</View>}
+        {noChild ? (
+          children
+        ) : (
+          <View pointerEvents="box-only" style={style}>
+            {children}
+          </View>
+        )}
       </TouchableNativeFeedback>
     );
   }

@@ -1,6 +1,6 @@
-// import webStorage from './storage.web';
+import { AsyncStorage } from 'react-native';
 
-let StorageLib = {};
+let StorageLib = AsyncStorage;
 
 export function setStorageLib(lib) {
   StorageLib = lib;
@@ -29,14 +29,8 @@ class LocalStorage {
     }
   }
 
-  async multiSet(keys) {
-    try {
-      return await StorageLib.multiSet(
-        keys.map(v => [v[0], JSON.stringify(v[1])])
-      );
-    } catch (e) {
-      throw e;
-    }
+  multiSet(keys) {
+    return StorageLib.multiSet(keys.map(v => [v[0], JSON.stringify(v[1])]));
   }
 
   async multiRemove(keys) {

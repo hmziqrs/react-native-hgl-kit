@@ -9,6 +9,10 @@ export function setDomain(domain) {
   configs.domain = domain;
 }
 
+export function setHeaders(headers) {
+  configs.defaultHeaders = { ...configs.defaultHeaders, ...headers };
+}
+
 export async function api(
   {
     url,
@@ -19,7 +23,7 @@ export async function api(
     bodyParsing = 'json',
     ...extraProps
   },
-  parsing = 'json',
+  parsing = 'json'
 ) {
   try {
     const props = {
