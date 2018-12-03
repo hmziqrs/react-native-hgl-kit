@@ -115,3 +115,5 @@ export default function getStyled(props, weight) {
   }
   return styled;
 }
+
+export { elevation };

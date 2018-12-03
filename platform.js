@@ -5,3 +5,4 @@ export const isAndroid = !isIOS;
 export const isIOS = Platform.OS === 'ios';
 export const isTablet = DeviceInfo.isTablet();
 export const isIPad = Platform.OS === 'ios' && DeviceInfo.isTablet();
+export const isDebug = __DEV__;

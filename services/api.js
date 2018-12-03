@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 const configs = {
   domain: '',
   defaultHeaders: {
@@ -19,13 +21,15 @@ export async function api(
     method = 'GET',
     body = {},
     headers = {},
+    params = null,
     baseUrl = true,
     bodyParsing = 'json',
     ...extraProps
   },
-  parsing = 'json'
+  res = { parsing: 'json', mapResponse: null }
 ) {
   try {
+    const { parsing, mapResponse } = res;
     const props = {
       method,
       headers: { ...configs.defaultHeaders, ...headers },
@@ -38,7 +42,7 @@ export async function api(
       } else if (bodyParsing === 'formData') {
         props.headers['Content-Type'] = 'multipart/form-data';
         props.body = new FormData();
-        for (let key in body) {
+        for (const key in body) {
           props.body.append(key, body[key]);
         }
       }
@@ -47,16 +51,24 @@ export async function api(
     if (baseUrl) {
       fetchUrl = `${configs.domain}${url}`;
     }
+    if (params) {
+      fetchUrl = `${fetchUrl}?${qs.stringify(params)}`;
+    }
     const data = await fetch(fetchUrl, props);
     if (data.status >= 400) {
       throw data;
     }
+    let parsedData = data;
     if (parsing === 'json') {
-      return data.json();
-    } else if (parsing === 'text') {
-      return await data.text();
+      parsedData = await data.json();
     }
-    return data;
+    if (parsing === 'text') {
+      parsedData = await data.text();
+    }
+    if (mapResponse) {
+      return mapResponse(parsedData);
+    }
+    return parsedData;
   } catch (e) {
     throw e;
   }

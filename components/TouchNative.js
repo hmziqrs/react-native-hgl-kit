@@ -8,10 +8,11 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import colors from '../colors.js';
+import colors from '../colors';
 
 function TouchFeedback({
   style,
+  noTouch,
   noChild,
   noNative,
   children,
@@ -20,14 +21,17 @@ function TouchFeedback({
   rippleEffect,
   ...props
 }) {
-  if (noFeedback) {
+  if (noTouch) {
+    <View style={style} {...props}>
+      {children}
+    </View>;
+  } else if (noFeedback) {
     return (
       <TouchableWithoutFeedback {...props}>
         <View style={style}>{children}</View>
       </TouchableWithoutFeedback>
     );
-  }
-  if (Platform.OS === 'android' && Platform.Version >= 21 && !noNative) {
+  } else if (Platform.OS === 'android' && Platform.Version >= 21 && !noNative) {
     return (
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.Ripple(rippleColor, rippleEffect)}
@@ -55,8 +59,9 @@ TouchFeedback.propTypes = {
   rippleColor: PropTypes.string,
   rippleEffect: PropTypes.bool,
   noFeedback: PropTypes.bool,
-  noChild: PropTypes.bool,
   noNative: PropTypes.bool,
+  noChild: PropTypes.bool,
+  noTouch: PropTypes.bool,
   style: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.object,
@@ -70,6 +75,7 @@ TouchFeedback.defaultProps = {
   noFeedback: false,
   noNative: false,
   noChild: false,
+  noTouch: false,
   style: {},
 };
 

@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 
-export default function Elevation(level = 1, os = null) {
+export default function elevation(level = 1, os = null) {
   if (os && Platform.OS !== os) {
     return {};
   }

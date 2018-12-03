@@ -46,6 +46,6 @@ class LocalStorage {
   }
 }
 
-const instance = new LocalStorage();
+export const storage = new LocalStorage();
 
-export default instance;
+export default storage;
