@@ -1,20 +1,23 @@
 import { Platform, PixelRatio, Keyboard } from 'react-native';
 import { isIphoneX } from 'react-native-iphone-x-helper';
+import DeviceInfo from 'react-native-device-info';
 
-import dimensions from './dimensions';
 import { isTablet, isDebug } from './platform';
+import dimensions from './dimensions';
 
 export function scaling(percent, ratio = { tab: 0.8, mobile: 1 }) {
-  const deviceHeight = isIphoneX()
-    ? dimensions.height * 0.9
-    : Platform.OS === 'android'
-    ? dimensions.height - dimensions.statusBarHeight
+  const height = DeviceInfo.isLandscape()
+    ? dimensions.width
     : dimensions.height;
+  const deviceHeight = isIphoneX()
+    ? height * 0.9
+    : Platform.OS === 'android'
+    ? height - dimensions.statusBarHeight
+    : height;
 
   const heightPercent = (percent * deviceHeight) / 100;
   const per = Math.round(heightPercent);
 
-  // return per;
   return per * (isTablet ? ratio.tab || 0.8 : ratio.mobile || 1);
 }
 

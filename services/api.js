@@ -56,7 +56,8 @@ export async function api(
     }
     const data = await fetch(fetchUrl, props);
     if (data.status >= 400) {
-      throw data;
+      const error = await data.json();
+      throw error;
     }
     let parsedData = data;
     if (parsing === 'json') {
