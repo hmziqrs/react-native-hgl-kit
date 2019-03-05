@@ -22,9 +22,11 @@ function TouchFeedback({
   ...props
 }) {
   if (noTouch) {
-    <View style={style} {...props}>
-      {children}
-    </View>;
+    return (
+      <View style={style} {...props}>
+        {children}
+      </View>
+    );
   } else if (noFeedback) {
     return (
       <TouchableWithoutFeedback {...props}>
