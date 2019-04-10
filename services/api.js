@@ -42,8 +42,16 @@ export async function api(
       } else if (bodyParsing === 'formData') {
         props.headers['Content-Type'] = 'multipart/form-data';
         props.body = new FormData();
+        // eslint-disable-next-line
         for (const key in body) {
-          props.body.append(key, body[key]);
+          const val = body[key];
+          if (Array.isArray(val)) {
+            val.forEach(nestedVal => {
+              props.body.append(key, nestedVal);
+            });
+          } else {
+            props.body.append(key, val);
+          }
         }
       }
     }
@@ -56,8 +64,7 @@ export async function api(
     }
     const data = await fetch(fetchUrl, props);
     if (data.status >= 400) {
-      const error = await data.json();
-      throw error;
+      throw data;
     }
     let parsedData = data;
     if (parsing === 'json') {

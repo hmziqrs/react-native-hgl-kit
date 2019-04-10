@@ -1,6 +1,6 @@
 {
   "name": "rn-hgl",
-  "version": "0.5.27",
+  "version": "0.5.29",
   "description": "React Native kit",
   "main": "index.js",
   "scripts": {
