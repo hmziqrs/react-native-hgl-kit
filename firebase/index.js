@@ -1,2 +1,2 @@
-import crashlytics from './crashlytics';
 export { default as analytics } from './analytics';
+export { default as crashlytics } from './crashlytics';

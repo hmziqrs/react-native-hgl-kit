@@ -1,4 +1,15 @@
 # React Native HGL kit
 
-Copy & run this command in order to setup the library.
-`react-native link react-native-firebase && react-native link react-native-device-info`
+Small collection of components & utilities which helps you save time & write smart code.
+
+## Requirments:
+
+- react-intl
+- react-native-firebase
+- react-native-device-info
+
+If you don't have required packages installed & linked then this library won't work with your app.
+
+## Documentation
+
+Coming Soon

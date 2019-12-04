@@ -1,6 +1,6 @@
 {
   "name": "rn-hgl",
-  "version": "0.5.29",
+  "version": "0.6.0",
   "description": "React Native kit",
   "main": "index.js",
   "scripts": {
@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/hackerhgl/react-native-hgl-kit#readme",
   "dependencies": {
-    "color": "^3.1.0",
-    "query-string": "^6.2.0",
-    "react-intl": "^2.7.2",
-    "react-native-device-info": "0.24.3",
-    "react-native-iphone-x-helper": "^1.2.0",
-    "react-native-status-bar-height": "^2.1.0"
+    "color": "^3.1.2",
+    "query-string": "^6.9.0",
+    "react-intl": "^3.9.1",
+    "react-native-device-info": "5.3.1",
+    "react-native-iphone-x-helper": "^1.2.1",
+    "react-native-status-bar-height": "^2.4.0"
   }
 }
