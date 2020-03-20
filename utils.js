@@ -5,7 +5,7 @@ import DeviceInfo from 'react-native-device-info';
 import { isTablet, isDebug } from './platform';
 import dimensions from './dimensions';
 
-export function scaling(percent, ratio = { tab: 0.8, mobile: 1 }) {
+export function scaling(percent) {
   const height = DeviceInfo.isLandscape()
     ? dimensions.width
     : dimensions.height;
@@ -18,7 +18,19 @@ export function scaling(percent, ratio = { tab: 0.8, mobile: 1 }) {
   const heightPercent = (percent * deviceHeight) / 100;
   const per = Math.round(heightPercent);
 
-  return per * (isTablet ? ratio.tab || 0.8 : ratio.mobile || 1);
+  let unit = per;
+
+  const max = 0.55;
+  const min = 0.4;
+
+  if (unit > max) {
+    unit = max;
+  }
+  if (unit < min) {
+    unit < min;
+  }
+
+  return per * unit;
 }
 
 export function debugLog(...p) {
