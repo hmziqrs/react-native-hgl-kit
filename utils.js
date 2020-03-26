@@ -1,37 +1,60 @@
-import { Platform, PixelRatio, Keyboard } from 'react-native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
+import { PixelRatio, Keyboard } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import { isTablet, isDebug } from './platform';
 import dimensions from './dimensions';
 
-export function scaling(percent) {
-  const height = DeviceInfo.isLandscape()
-    ? dimensions.width
-    : dimensions.height;
-  const deviceHeight = isIphoneX()
-    ? height * 0.9
-    : Platform.OS === 'android'
-    ? height - dimensions.statusBarHeight
-    : height;
+let log = false;
 
-  const heightPercent = (percent * deviceHeight) / 100;
-  const per = Math.round(heightPercent);
+export function scaling(unit) {
+  let ratio = dimensions.width / dimensions.height;
+  const pixelDensity = PixelRatio.get();
+  ratio = ratio + (pixelDensity + ratio) / 2;
+  ratio = pixelDensity + ratio;
 
-  let unit = per;
-
-  const max = 0.55;
-  const min = 0.4;
-
-  if (unit > max) {
-    unit = max;
-  }
-  if (unit < min) {
-    unit < min;
+  if (!log) {
+    log = true;
+    console.log(
+      `ratio: ${pixelDensity}, ${DeviceInfo.getDeviceNameSync()}  ${ratio}\nwidth: ${
+        dimensions.width
+      } check:${dimensions.width < 420 && pixelDensity > 2}\n\n`
+    );
   }
 
-  return per * unit;
+  if (dimensions.width < 420 && pixelDensity > 2) {
+    ratio *= 0.85;
+
+    if (ratio >= 4) {
+      ratio = 4;
+    }
+  }
+
+  return ratio * unit;
 }
+// export function scaling(percent) {
+//   const height = DeviceInfo.isLandscape()
+//     ? dimensions.width
+//     : dimensions.height;
+//   const deviceHeight = isIphoneX()
+//     ? height * 0.9
+//     : Platform.OS === 'android'
+//     ? height - dimensions.statusBarHeight
+//     : height;
+
+//   const heightPercent = (percent * deviceHeight) / 100;
+//   const per = Math.round(heightPercent);
+
+//   let unit = per;
+
+//   const max = 1;
+//   const min = 0.4;
+
+//   if (unit > max) {
+//     unit = max;
+//   }
+
+//   return per * unit;
+// }
 
 export function debugLog(...p) {
   if (isDebug) {
